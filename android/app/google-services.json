@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "465201931770",
+    "project_id": "feaseapp-parent",
+    "storage_bucket": "feaseapp-parent.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:465201931770:android:e4640eb5301f5f7c8b7043",
+        "android_client_info": {
+          "package_name": "com.koffeekodes.parent_institute"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "465201931770-da1epm1pef6jrd5p67k1ddq9pok7oov5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.koffeekodes.parent_institute",
+            "certificate_hash": "6d4824287e548b6fe190cf8197cea85057b38a0b"
+          }
+        },
+        {
+          "client_id": "465201931770-vm5e6k426d0nofdql133jcoerta24gmq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAur_LzHTrtpvz7q3U7OZ3lov2iC82qvks"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "465201931770-vm5e6k426d0nofdql133jcoerta24gmq.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "465201931770-rorb6n2mom1dnf8om212shkobj903l22.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.koffeekodes.parentInstitute"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
