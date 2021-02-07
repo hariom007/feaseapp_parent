@@ -3,8 +3,12 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:parent_institute/API/api.dart';
 import 'package:parent_institute/Model/InstallmentListModel.dart';
+import 'package:parent_institute/Model/parentProfileModel.dart';
 import 'package:parent_institute/Model/studentListForPaymentModel.dart';
 import 'package:parent_institute/Values/AppColors.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import 'check.dart';
 
 class GetStudentDetail extends StatefulWidget {
   String studentId;
@@ -21,7 +25,32 @@ class _GetStudentDetailState extends State<GetStudentDetail> {
   bool isLoaded = false;
   List<InstallmentListModel> installmentList = [];
   List<StudentListForPaymentModel> studentListForPayment = [];
+  SharedPreferences sharedPreferences;
 
+  String API_KEY,API_SECRET ;
+
+  ParentProfileModel parentProfileModel;
+
+  Future getParentProfile() async {
+    sharedPreferences = await SharedPreferences.getInstance();
+    String mob = sharedPreferences.getString('MOB');
+
+    try {
+
+      var data ={
+        "MobileNo" : mob
+      };
+      var res = await CallApi().postData2(data,"GetParentPersonalDetail");
+      var body = json.decode(res.body);
+      print(body);
+
+      parentProfileModel = ParentProfileModel.fromJson(body);
+      print(parentProfileModel.MobileNo);
+
+    } catch (exception) {
+      print('$exception');
+    }
+  }
 
   @override
   void initState() {
@@ -43,7 +72,10 @@ class _GetStudentDetailState extends State<GetStudentDetail> {
       var res = await CallApi().postData(data, "getCurrentPaymentDetails");
       var body = json.decode(res.body);
       // print(body);
-          {
+
+        API_KEY = body['PaymentGatewaykeys'][0]['WorkingKey'];
+        API_SECRET = body['PaymentGatewaykeys'][0]['AccessCode'];
+
         List installList = body['InstallmentList'] as List;
 
         installmentList = installList.map<InstallmentListModel>((json) => InstallmentListModel.fromJson(json)).toList();
@@ -51,12 +83,13 @@ class _GetStudentDetailState extends State<GetStudentDetail> {
         List stuListForPay = body['StudentListForPayment'] as List;
         studentListForPayment = stuListForPay.map<StudentListForPaymentModel>((json) => StudentListForPaymentModel.fromJson(json)).toList();
 
+        await getParentProfile();
 
         setState(() {
           isLoading =false;
           isLoaded = true;
         });
-      }
+
 
     } catch (exception) {
       print('$exception');
@@ -324,6 +357,24 @@ class _GetStudentDetailState extends State<GetStudentDetail> {
                                         fontFamily: 'Montserrat-SemiBold'
                                     ),),
                                     onPressed: () {
+                                      var final_amount = int.parse(installmentList[index].InstallmentAmount)*100;
+                                      Navigator.of(context)
+                                          .pushAndRemoveUntil(
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              CheckRazor(
+                                                  amt: final_amount
+                                                      .toString(),
+                                                  mobile: parentProfileModel.MobileNo,
+                                                  email: parentProfileModel.EmailID,
+                                                  API_KEY : API_KEY,
+                                                  API_SECRET : API_SECRET
+                                              ),
+                                        ),
+                                            (Route<
+                                            dynamic> route) => false,
+                                      );
+
 
                                     },
                                   ),

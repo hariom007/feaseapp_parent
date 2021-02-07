@@ -7,6 +7,8 @@ class CallApi{
   final String _url='https://finaltestapi.acadmin.in/api/FeesData/';
   final String _url2='https://finaltestapi.acadmin.in/api/MasterData/';
 
+  final String _Razorpay_url='https://api.razorpay.com/v1/';
+
   // final String _url1='https://homexp.in/AgentApi/';
 
 
@@ -51,9 +53,7 @@ class CallApi{
 
   };
 
-/*  razorPaypostData(data,apiUrl) async {
-    String username = 'rzp_live_Kdj8EMnC5zB0F3';
-    String password = 'FNwLydK0lgfqa8TTfyxpBj6U';
+  razorPaypostData(username,password,data,apiUrl) async {
     String basicAuth = 'Basic ' + base64Encode(utf8.encode('$username:$password'));
 
     print(basicAuth);
@@ -68,6 +68,6 @@ class CallApi{
           'authorization':basicAuth,
         }
     );
-  }*/
+  }
 
 }
