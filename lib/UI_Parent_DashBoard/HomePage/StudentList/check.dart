@@ -9,8 +9,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'razorpay_flutter.dart';
 
 class CheckRazor extends StatefulWidget {
-  final String amt,mobile,email,API_KEY,API_SECRET;
-  CheckRazor({Key key,this.amt,this.mobile,this.email,this.API_KEY,this.API_SECRET}) : super(key:key);
+  final String amt,mobile,email,API_KEY,API_SECRET,stuId;
+  List installList;
+  CheckRazor({Key key,this.amt,this.mobile,this.email,this.API_KEY,this.API_SECRET,this.stuId,this.installList}) : super(key:key);
   @override
   _CheckRazorState createState() => _CheckRazorState();
 }
@@ -69,12 +70,14 @@ class _CheckRazorState extends State<CheckRazor> {
     double iminAmount = double.parse(minAmount)/100;
     String actualAmount = iminAmount.toString();
     var data = {
+      "StudAcadID" : '${widget.stuId}',
       "razorpay_order_id" : response.orderId,
       "razorpay_payment_id": response.paymentId,
       "razorpay_signature": response.signature,
       "amount" : actualAmount,
+      "InstallmentList" : widget.installList
     };
-    var res = await CallApi().postData2(data, 'OnlinePaymentRazorPay');
+    var res = await CallApi().postData(data, 'OnlinePaymentRazorPay');
     var body = json.decode(res.body);
     print(body);
     //print(response);*/

@@ -10,7 +10,6 @@ String StudentListForPaymentModelListToJson(List<StudentListForPaymentModel> dat
 class StudentListForPaymentModel{
   String FullName;
   String Course;
-  String RollNo;
   String StudAcadID;
   String TotalFees;
   String PaidAmount;
@@ -19,7 +18,6 @@ class StudentListForPaymentModel{
   StudentListForPaymentModel({
     this.FullName,
     this.Course,
-    this.RollNo,
     this.StudAcadID,
     this.TotalFees,
     this.PaidAmount,
@@ -32,7 +30,6 @@ class StudentListForPaymentModel{
     return StudentListForPaymentModel(
       FullName: json['FullName'],
       Course: json['Course'],
-      RollNo: json['RollNo'],
       StudAcadID: json['StudAcadID'],
       TotalFees: json['TotalFees'],
       PaidAmount: json['PaidAmount'],
@@ -43,7 +40,6 @@ class StudentListForPaymentModel{
   Map<String,dynamic> toJson() => {
     'FullName' : FullName,
     'Course' : Course,
-    'RollNo' : RollNo,
     'StudAcadID' : StudAcadID,
     'TotalFees' : TotalFees,
     'PaidAmount' : PaidAmount,

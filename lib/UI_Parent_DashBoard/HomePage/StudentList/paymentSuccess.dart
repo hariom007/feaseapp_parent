@@ -99,7 +99,7 @@ class SuccessPage extends StatelessWidget {
                 ),
                 color: AppColors.appButtonColor,
                 onPressed: (){
-                //  MyNavigator.goToDashboard(context);
+                 MyParentNavigator.goToKillDashBoard(context);
                 },
                 child: RichText(
                   text: TextSpan(

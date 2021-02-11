@@ -106,7 +106,7 @@ class FailedPage extends StatelessWidget {
                 ),
                 color: AppColors.appButtonColor,
                 onPressed: (){
-                 // MyParentNavigator.goToDashboard(context);
+                  MyParentNavigator.goToKillDashBoard(context);
                 },
                 child: RichText(
                   text: TextSpan(
