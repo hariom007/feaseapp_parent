@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:country_pickers/country.dart';
-import 'package:country_pickers/country_pickers.dart';
+import 'package:country_pickers/country_picker_dialog.dart';
+import 'package:country_pickers/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -34,7 +35,6 @@ class _LoginPageState extends State<LoginPage> with ValidationMixin {
     builder: (context) => Theme(
       data: Theme.of(context).copyWith(primaryColor: Colors.pink),
       child: CountryPickerDialog(
-        // titlePadding: EdgeInsets.all(8.0),
         searchCursorColor: Colors.pinkAccent,
         divider: Divider(),
         searchInputDecoration: InputDecoration(
@@ -283,7 +283,7 @@ class _LoginPageState extends State<LoginPage> with ValidationMixin {
                                                 ),
                                                 child: GestureDetector(
                                                   onTap: (){
-                                                    _openCountryPickerDialog();
+                                                    // _openCountryPickerDialog();
                                                   },
                                                   child: Row(
                                                     children: [
@@ -300,8 +300,9 @@ class _LoginPageState extends State<LoginPage> with ValidationMixin {
                                               )
                                           ),
                                           Expanded(
-                                            child: TextField(
+                                            child: TextFormField(
                                               autofocus: false,
+                                              validator: validateMobile,
                                               keyboardType: TextInputType.phone,
                                               inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                                               controller: phoneController,
@@ -403,7 +404,6 @@ class _LoginPageState extends State<LoginPage> with ValidationMixin {
                                         setState(() {
                                           if (_state == 0 && tandc == true) {
                                             if (_formKey.currentState.validate() ) {
-
                                               animateButton();
                                             }
                                             else{
@@ -445,7 +445,10 @@ class ValidationMixin {
     if (value.isEmpty) {
       return 'Please enter mobile number\n';
     }
-    if (value.length == 13) {
+    if (value.length > 10) {
+      return 'Must be more than 10 character\n';
+    }
+    if (value.length < 10) {
       return 'Must be more than 10 character\n';
     }
     return null;

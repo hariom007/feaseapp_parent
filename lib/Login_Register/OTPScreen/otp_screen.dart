@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:parent_institute/Login_Register/Login/login.dart';
 import 'package:parent_institute/Login_Register/StudentDetail/studentDetails.dart';
 import 'package:parent_institute/MyParentNavigator/myParentNavigator.dart';
 import 'package:parent_institute/UI_Parent_DashBoard/dashboard.dart';
@@ -291,7 +292,7 @@ class _OTPScreenPageState extends State<OTPScreenPage> {
                 left: 0,
                 child: InkWell(
                   onTap: () {
-                    Navigator.pop(context);
+                   MyParentNavigator.goToLoginPage(context);
                   },
                   child: Container(
                     padding: EdgeInsets.symmetric(horizontal: 10),
