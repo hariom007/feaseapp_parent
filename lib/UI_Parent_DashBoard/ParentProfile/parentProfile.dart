@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:parent_institute/API/api.dart';
 import 'package:parent_institute/Model/parentProfileModel.dart';
 import 'package:parent_institute/MyParentNavigator/myParentNavigator.dart';
+import 'package:parent_institute/UI_Parent_DashBoard/ParentProfile/PaymentHistory/listAllStudentPayment.dart';
 import 'package:parent_institute/UI_Parent_DashBoard/ParentProfile/PaymentHistory/payment_history.dart';
 import 'package:parent_institute/Values/AppColors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -169,7 +170,7 @@ class _ParentProfilePageState extends State<ParentProfilePage> {
                   ),
                   child: ListTile(
                     onTap: (){
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=> PaymentHistory()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=> ListAllStudentPayment()));
                     },
                     dense: true,
                     title: Text('Payment History',
