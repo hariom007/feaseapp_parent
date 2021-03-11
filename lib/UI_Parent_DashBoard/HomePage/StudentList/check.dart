@@ -79,13 +79,17 @@ class _CheckRazorState extends State<CheckRazor> {
     };
     var res = await CallApi().postData(data, 'OnlinePaymentRazorPay');
     var body = json.decode(res.body);
+    print('OnlinePaymentRazorPay');
     print(body);
+
+    String payID = body['payID'];
+
     //print(response);*/
     Navigator.pushAndRemoveUntil(
       context,
       MaterialPageRoute(
         builder: (BuildContext context) => SuccessPage(
-              response: response,
+              response: response,payID: payID,
             ),
       ),
       (Route<dynamic> route) => false,
